@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
+
+    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+
     <!--
       [SpringProperty 주입]
       application.yml에서 설정한 값을 로직 내부에서 변수로 사용합니다.
