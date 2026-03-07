@@ -1,0 +1,61 @@
+# ===================================================================
+# Spring Boot 4.0 API Boilerplate Configuration
+# ===================================================================
+
+spring:
+  application:
+    name: spring4-boilerplate
+
+  profiles:
+    active: local
+    group:
+      local: "common"
+      dev: "common"
+      prod: "common"
+
+---
+# [공통 설정: 모든 환경에서 공유]
+spring:
+  config:
+    activate:
+      on-profile: common
+
+server:
+  port: 8080
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+# Swagger (Springdoc) 보안 및 경로 설정
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    path: /api-docs-dash # 보안을 위한 커스텀 경로
+    disable-swagger-default-url: true
+    display-request-duration: true
+
+# 로깅(Logging) 아키텍처 설정
+logging:
+  file:
+    path: ./logs # 로그 파일 저장 위치
+  logback:
+    rollingpolicy:
+      max-history: 30 # 보관 기간 (logback-spring.xml의 MAX_HISTORY로 주입됨)
+      max-file-size: 10MB
+      total-size-cap: 1GB
+
+---
+# [운영 환경 설정]
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+springdoc:
+  api-docs:
+    enabled: false # 운영 환경 보안을 위해 스웨거 비활성화
+  swagger-ui:
+    enabled: false

@@ -1,0 +1,53 @@
+HELP.md
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+
+# =========================================================
+# Custom: 프로젝트 실행 환경에서 파생되는 추가 무시 파일
+# =========================================================
+# 운영체제 생성 파일 (OS Generated Files)
+.DS_Store
+Thumbs.db
+
+# 로그 파일 (Log Files - Logback 적용에 따른 무시 규칙)
+/logs/
+*.log
+
+# 로컬 환경 변수 설정 파일 (Local Environments)
+.env
+*.properties.local
+*.yml.local

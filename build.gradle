@@ -1,0 +1,57 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '4.0.3'
+	id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.jinh'
+version = '0.0.1-SNAPSHOT'
+description = 'spring4-boilerplate'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+	}
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	// 1. Web & Validation
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'org.springframework.boot:spring-boot-starter-webmvc'
+
+	// 2. Swagger UI (Springdoc) - v3.0.2 적용
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:3.0.2'
+	// 3. 보안 취약점(GHSA-72hv-8253-57qq) 해결을 위한 Jackson 버전 강제 업그레이드
+	// Jackson-core DoS 취약점이 해결된 v2.18.3 이상 버전을 사용하도록 BOM 설정
+	implementation platform('com.fasterxml.jackson:jackson-bom:2.18.3')
+
+	// 4. Utils
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+
+	/**
+	 * Jasypt Spring Boot Starter
+	 * 설정 파일(YAML/Properties)의 민감 정보를 암호화하고 런타임에 복호화하는 기능을 제공합니다.
+	 * 공식 레포지토리: https://github.com/ulisesbocchio/jasypt-spring-boot
+	 */
+	implementation 'com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.5'
+
+	// 5. Test
+	testImplementation 'org.springframework.boot:spring-boot-starter-validation-test'
+	testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
